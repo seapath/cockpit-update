@@ -5,6 +5,7 @@
 
 import React from 'react';
 import cockpit from 'cockpit';
+import ApplyUpdate from './applyUpdate';
 
 class URLUpdate extends React.Component {
     constructor() {
@@ -84,6 +85,8 @@ class URLUpdate extends React.Component {
                 <div>{"Download status: " + this.state.downloadState}</div>
                 <br/>
                 <div>{"Logs: " + this.state.downloadLogs}</div>
+                <br/>
+                <ApplyUpdate />
             </div>
         );
     }
