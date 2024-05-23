@@ -11,13 +11,16 @@ class ApplyUpdate extends React.Component {
         super();
         this.state = {
             swuLogs: '',
+            showRestartButton: false,
         };
         this.applyUpdate = this.applyUpdate.bind(this);
+        this.restartHost = this.restartHost.bind(this);
     }
 
     applyUpdate() {
         this.setState({
             swuLogs: "",
+            showRestartButton: false,
         });
         let stdoutData = "";
 
@@ -29,6 +32,13 @@ class ApplyUpdate extends React.Component {
             stdoutData += cleanedOutput;
             this.setState({ swuLogs: stdoutData });
         })
+        .then(() => {
+            this.setState({showRestartButton: true})
+        })
+    }
+
+    restartHost() {
+        cockpit.spawn(["reboot"], { superuser: "required" });
     }
 
     render() {
@@ -36,6 +46,8 @@ class ApplyUpdate extends React.Component {
             <div>
                 <button onClick={this.applyUpdate}>Apply Update</button>
                 <pre>{this.state.swuLogs}</pre>
+
+                {this.state.showRestartButton && (<button onClick={this.restartHost}>Restart host</button>)}
             </div>
         );
     }
