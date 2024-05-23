@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import UpdateChoice from './components/updateChoice';
 
 export class Application extends React.Component {
 
@@ -11,6 +12,7 @@ export class Application extends React.Component {
     return (
       <div>
         <h1 className="title1">Update</h1>
+        <UpdateChoice />
       </div>
     );
   }
