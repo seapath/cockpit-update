@@ -4,6 +4,8 @@
  */
 
 import React from 'react';
+import FileUploader from './fileUploader';
+import ApplyUpdate from './applyUpdate';
 
 export default class UploadUpdate extends React.Component {
     constructor() {
@@ -12,7 +14,11 @@ export default class UploadUpdate extends React.Component {
 
     render() {
         return (
-            <div>Update with uploaded content</div>
+            <div>
+                <FileUploader />
+                <br/>
+                <ApplyUpdate />
+            </div>
         );
     }
 }

@@ -32,8 +32,7 @@ class UpdateChoice extends React.Component {
                     </button>
                     <button
                         className={selectedOption === 'upload' ? 'active' : ''}
-                        // Feature not enabled
-                        onClick={() => this.handleOptionChange('')}
+                        onClick={() => this.handleOptionChange('upload')}
                     >
                         Update by upload
                     </button>
