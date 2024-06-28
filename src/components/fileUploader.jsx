@@ -57,6 +57,11 @@ class FileUploader extends Component {
   uploadFile() {
     const { file } = this.state;
     if (file) {
+      this.setState({
+        message: '',
+        chunksProgress: { completed: 0, number: 0 },
+      });
+
       const totalChunks = Math.ceil(file.size / (64 * 1024)); // Default size of the message sent to the socket for the RAW channel
       const channel = cockpit.channel({
         binary: true,
@@ -73,7 +78,6 @@ class FileUploader extends Component {
   render() {
     const { chunksProgress } = this.state;
     const progress = Math.round(100 * (chunksProgress.number / chunksProgress.completed));
-    console.log(progress);
 
     return (
       <div>
