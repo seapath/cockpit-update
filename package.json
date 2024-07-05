@@ -1,6 +1,7 @@
 {
   "name": "cluster-update",
   "description": "cockpit cluster update",
+  "version": "1.0.0",
   "type": "module",
   "main": "index.js",
   "repository": "",
