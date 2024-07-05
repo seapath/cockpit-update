@@ -25,12 +25,14 @@ class UpdateChoice extends React.Component {
             <div>
                 <div className="tabs">
                     <button
+                        id='updateUrl'
                         className={selectedOption === 'url' ? 'active' : ''}
                         onClick={() => this.handleOptionChange('url')}
                     >
                         Update by URL
                     </button>
                     <button
+                        id='updateUpload'
                         className={selectedOption === 'upload' ? 'active' : ''}
                         onClick={() => this.handleOptionChange('upload')}
                     >
