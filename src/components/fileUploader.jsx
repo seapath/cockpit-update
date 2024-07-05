@@ -81,14 +81,14 @@ class FileUploader extends Component {
 
     return (
       <div>
-        <input type="file" onChange={this.handleFileChange} accept='.swu'/>
-        <button onClick={this.uploadFile}>Upload File</button>
+        <input id='inputFile' type="file" onChange={this.handleFileChange} accept='.swu'/>
+        <button id='uplaodFileButton' onClick={this.uploadFile}>Upload File</button>
         <p>{this.state.message}</p>
 
         {progress > 0 && (
           <div>
             <progress value={progress} max="100"></progress>
-            <span>{progress}%</span>
+            <span id='progressUpload'>{progress}%</span>
           </div>
         )}
       </div>
