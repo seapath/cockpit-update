@@ -43,10 +43,9 @@ class ApplyUpdate extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='centered-container'>
                 <button onClick={this.applyUpdate}>Apply Update</button>
                 <pre>{this.state.swuLogs}</pre>
-
                 {this.state.showRestartButton && (<button onClick={this.restartHost}>Restart host</button>)}
             </div>
         );

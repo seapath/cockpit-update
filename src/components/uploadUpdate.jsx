@@ -14,7 +14,7 @@ export default class UploadUpdate extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='centered-container'>
                 <FileUploader />
                 <br/>
                 <ApplyUpdate />
