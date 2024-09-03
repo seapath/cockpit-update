@@ -7,6 +7,8 @@ import React from 'react';
 import cockpit from 'cockpit';
 import ApplyUpdate from './applyUpdate';
 
+import { CheckCircleIcon, ExclamationCircleIcon } from "@patternfly/react-icons";
+
 class URLUpdate extends React.Component {
     constructor() {
         super();
@@ -71,6 +73,7 @@ class URLUpdate extends React.Component {
     }
 
     render() {
+        const { downloadState } = this.state;
         return (
             <div>
                 <div className='input-container'>
@@ -81,12 +84,18 @@ class URLUpdate extends React.Component {
                         placeholder="Enter URL"
                     />
                     <button onClick={this.handleDownload}>Download</button>
+
+                    <div className='icon'>
+                        {downloadState === "success" && <CheckCircleIcon style={{ width: '30px', height: '30px', color: 'green' }}/>}
+                        {downloadState === "failure" && <ExclamationCircleIcon style={{ width: '30px', height: '30px', color: 'red' }}/>}
+                    </div>
                 </div>
-                <div>{"Download status: " + this.state.downloadState}</div>
                 <br/>
-                <div>{"Logs: " + this.state.downloadLogs}</div>
+                <div>{"Logs:" + this.state.downloadLogs}</div>
                 <br/>
-                <ApplyUpdate />
+                <div className='centered-container'>
+                    <ApplyUpdate/>
+                </div>
             </div>
         );
     }

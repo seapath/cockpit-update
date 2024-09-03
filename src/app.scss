@@ -47,7 +47,8 @@
 }
 
 // Regular buttons
-button {
+button,
+input[type=file]::file-selector-button {
     background-color: #ffffff;
     border-color: #a39797;
     border-radius: 5px 5px 0 0;
@@ -55,7 +56,8 @@ button {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-:where(.pf-v5-theme-dark) button {
+:where(.pf-v5-theme-dark) button,
+:where(.pf-v5-theme-dark) input[type=file]::file-selector-button {
     background-color: #212427;
     border-color: #645d5d;
     border-radius: 5px 5px 0 0;
@@ -64,9 +66,14 @@ button {
     margin-bottom: 10px;
 }
 
-.input-container {
+.input-container,
+.centered-container {
+    display: flex;
+    flex-direction: column;
     width: 500px;
     margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .input-container input {
@@ -81,4 +88,18 @@ button {
 .input-container input:focus {
     outline: none;
     border-color: #0077cc;
+}
+
+.input-container button {
+    margin-left: auto;
+}
+
+.input-container .icon {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered-container button {
+    margin-left: auto;
+    margin-right: auto;
 }

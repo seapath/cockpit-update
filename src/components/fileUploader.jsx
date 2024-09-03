@@ -6,6 +6,8 @@
 import React, { Component } from 'react';
 import cockpit from 'cockpit';
 
+import { Progress, ProgressMeasureLocation } from '@patternfly/react-core';
+
 class FileUploader extends Component {
   constructor(props) {
     super(props);
@@ -80,15 +82,16 @@ class FileUploader extends Component {
     const progress = Math.round(100 * (chunksProgress.number / chunksProgress.completed));
 
     return (
-      <div>
-        <input id='inputFile' type="file" onChange={this.handleFileChange} accept='.swu'/>
-        <button id='uplaodFileButton' onClick={this.uploadFile}>Upload File</button>
+      <div className='centered-container'>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <input type="file" onChange={this.handleFileChange} accept='.swu'/>
+          <button onClick={this.uploadFile}>Upload File</button>
+        </div>
         <p>{this.state.message}</p>
 
         {progress > 0 && (
-          <div>
-            <progress value={progress} max="100"></progress>
-            <span id='progressUpload'>{progress}%</span>
+          <div className='centered-container'>
+            <Progress value={progress} measureLocation={ProgressMeasureLocation.inside} />
           </div>
         )}
       </div>
