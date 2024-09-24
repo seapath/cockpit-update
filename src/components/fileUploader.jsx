@@ -6,7 +6,7 @@
 import React, { Component } from 'react';
 import cockpit from 'cockpit';
 
-import { Progress, ProgressMeasureLocation } from '@patternfly/react-core';
+import { Progress, ProgressMeasureLocation, Button } from '@patternfly/react-core';
 
 class FileUploader extends Component {
   constructor(props) {
@@ -85,7 +85,7 @@ class FileUploader extends Component {
       <div className='centered-container'>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <input type="file" onChange={this.handleFileChange} accept='.swu'/>
-          <button onClick={this.uploadFile}>Upload File</button>
+          <Button onClick={this.uploadFile} variant='secondary'>Upload File</Button>
         </div>
         <p>{this.state.message}</p>
 

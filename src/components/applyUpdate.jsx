@@ -4,6 +4,7 @@
  */
 
 import cockpit from 'cockpit';
+import { Button } from '@patternfly/react-core';
 import React from 'react';
 
 class ApplyUpdate extends React.Component {
@@ -44,9 +45,21 @@ class ApplyUpdate extends React.Component {
     render() {
         return (
             <div className='centered-container'>
-                <button onClick={this.applyUpdate}>Apply Update</button>
+                <Button
+                    variant='primary'
+                    onClick={this.applyUpdate}
+                >
+                    Apply Update
+                </Button>
                 <pre>{this.state.swuLogs}</pre>
-                {this.state.showRestartButton && (<button onClick={this.restartHost}>Restart host</button>)}
+                {true &&
+                    (<Button
+                        variant='secondary'
+                        isDanger
+                        onClick={this.restartHost}
+                    >
+                        Restart host
+                    </Button>)}
             </div>
         );
     }
