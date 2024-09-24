@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { Button } from '@patternfly/react-core';
 import URLUpdate from './urlUpdate';
 import UploadUpdate from './uploadUpdate';
 
@@ -24,20 +25,24 @@ class UpdateChoice extends React.Component {
         return (
             <div>
                 <div className="tabs">
-                    <button
+                    <Button
                         id='updateUrl'
-                        className={selectedOption === 'url' ? 'active' : ''}
+                        variant="secondary"
+                        size='lg'
+                        isActive={selectedOption === 'url' ? 'true' : ''}
                         onClick={() => this.handleOptionChange('url')}
                     >
                         Update by URL
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         id='updateUpload'
-                        className={selectedOption === 'upload' ? 'active' : ''}
+                        variant="secondary"
+                        size='lg'
+                        isActive={selectedOption === 'upload' ? 'true' : ''}
                         onClick={() => this.handleOptionChange('upload')}
                     >
                         Update by upload
-                    </button>
+                    </Button>
                 </div>
 
                 <div >
