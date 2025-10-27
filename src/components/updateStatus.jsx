@@ -22,13 +22,13 @@ class UpdateStatus extends React.Component {
 
     getUpdateStatus() {
         // Using cockpit's file.read API to detect the existence of a file requires root access
-        cockpit.spawn(["ls", "/var/log/update_success"])
+        cockpit.spawn(["ls", "/var/log/update_success"], { err: "ignore" })
             .then(() => this.setState({ status: "success"}))
 
-        cockpit.spawn(["ls", "/var/log/update_fail"])
+        cockpit.spawn(["ls", "/var/log/update_fail"], { err: "ignore" })
             .then(() => this.setState({ status: "fail"}))
 
-        cockpit.spawn(["ls", "/var/log/update_marker"])
+        cockpit.spawn(["ls", "/var/log/update_marker"], { err: "ignore" })
             .then(() => this.setState({ status: "wait for reboot"}))
     }
 
