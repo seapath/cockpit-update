@@ -9,6 +9,8 @@ import {
     TextContent,
     TextVariants,
 } from '@patternfly/react-core';
+import cockpit from 'cockpit';
+import { parseBootSlot } from '../lib/updateParsing';
 
 class UpdateStatus extends React.Component {
     constructor() {
@@ -24,29 +26,25 @@ class UpdateStatus extends React.Component {
         // Using cockpit's file.read API to detect the existence of a file requires root access
         cockpit.spawn(["ls", "/var/log/update_success"], { err: "ignore" })
             .then(() => this.setState({ status: "success"}))
+            .catch(() => {})
 
         cockpit.spawn(["ls", "/var/log/update_fail"], { err: "ignore" })
             .then(() => this.setState({ status: "fail"}))
+            .catch(() => {})
 
         cockpit.spawn(["ls", "/var/log/update_marker"], { err: "ignore" })
             .then(() => this.setState({ status: "wait for reboot"}))
+            .catch(() => {})
     }
 
     getBootSlot() {
         cockpit.spawn(["mount"])
         .then((output) => {
-            const regex = /\/dev\/([^\s]+) on \/ /;
-            const rootfsPart = output.match(regex)[1];
-            const partNumber = rootfsPart.slice(-1);
-
-            if(partNumber == 3){
-                this.setState({ slotA: true });
-                this.setState({ slotB: false });
-            }else if(partNumber == 4){
-                this.setState({ slotA: false });
-                this.setState({ slotB: true });
-            }
+            const slot = parseBootSlot(output);
+            this.setState({ slotA: slot === "A" });
+            this.setState({ slotB: slot === "B" });
         })
+        .catch(() => {})
     }
 
     render() {
