@@ -6,6 +6,7 @@
 import React from 'react';
 import cockpit from 'cockpit';
 import ApplyUpdate from './applyUpdate';
+import { getFileExtension } from '../lib/updateParsing';
 
 import { CheckCircleIcon, ExclamationCircleIcon } from "@patternfly/react-icons";
 import { Button } from '@patternfly/react-core';
@@ -28,7 +29,7 @@ class URLUpdate extends React.Component {
 
     async handleDownload() {
         const { url } = this.state;
-        const ext = this.getFileExtension(url);
+        const ext = getFileExtension(url);
 
         if(url.trim() === ''){
             this.setState({
@@ -62,15 +63,6 @@ class URLUpdate extends React.Component {
             .then(downloadLogs =>{
                 this.setState({downloadLogs: downloadLogs});
             })
-    }
-
-    getFileExtension(url) {
-        // Get the filename from the url
-        const filename = url.substring(url.lastIndexOf("/") + 1);
-
-        const extension = filename.split(".").pop();
-
-        return extension;
     }
 
     render() {

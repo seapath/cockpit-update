@@ -71,7 +71,7 @@ class FileUploader extends Component {
         path: `/tmp/seapath-swu-image.swu`,
         superuser: "try",
       });
-      channel.addEventListener("ready", this.sendNextChunk(file, 0, totalChunks, channel))
+      channel.addEventListener("ready", () => this.sendNextChunk(file, 0, totalChunks, channel))
     } else {
       this.setState({ message: 'No file selected.' });
     }

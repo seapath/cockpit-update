@@ -6,6 +6,7 @@
 import cockpit from 'cockpit';
 import { Button } from '@patternfly/react-core';
 import React from 'react';
+import { cleanSwupdateLog } from '../lib/updateParsing';
 
 class ApplyUpdate extends React.Component {
     constructor() {
@@ -29,7 +30,7 @@ class ApplyUpdate extends React.Component {
         cockpit.spawn(["swupdate", "-i", "/tmp/seapath-swu-image.swu"], { err: "out", superuser: "required" })
         .stream(output => {
             // Delete lines that don't belong in logs
-            const cleanedOutput = output.replace(/SWUpdate v[\d.-]+[\s\S]*?Licensed under GPLv2[\s\S]*?(\n\n|$)/, '');
+            const cleanedOutput = cleanSwupdateLog(output);
             stdoutData += cleanedOutput;
             this.setState({ swuLogs: stdoutData });
         })
